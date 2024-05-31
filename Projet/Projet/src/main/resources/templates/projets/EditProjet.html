@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Our Projet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto rounded border p-4 m-4">
+            <h2 class="text-center mb-5">Edite Projet</h2>
+            <form method="post" enctype="multipart/form-data" th:object="${projetDto}">
+
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label">#ID</label>
+                    <div class="col-sm-8">
+                        <input readonly class="form-control-plaintext" th:value="${projet.id}">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label">name_Projet</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" th:field="${projetDto.nameProj}">
+                        <p th:if="${#fields.hasErrors('nameProj')}" th:errorclass="text-danger"
+                           th:errors="${projetDto.nameProj}"></p>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label">name_Owner</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" th:field="${projetDto.nameOwner}">
+                        <p th:if="${#fields.hasErrors('nameOwner')}" th:errorclass="text-danger"
+                           th:errors="${projetDto.nameOwner}"></p>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label">secteur_Activite</label>
+                    <div class="col-sm-8">
+                        <select class="form-select" th:field="${projetDto.secteurActivite}">
+                            <option value="Choices......">Choices......</option>
+                            <option value="Industriel">Industriel</option>
+                            <option value="Health">Health</option>
+                            <option value="Education">Education</option>
+                            <option value="Technologie">Technologie</option>
+                        </select>
+                        <p th:if="${#fields.hasErrors('secteurActivite')}" th:errorclass="text-danger"
+                           th:errors="${projetDto.secteurActivite}"></p>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label">montant_Proj</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="number" step="0.01" min="0" th:field="${projetDto.montantProj}">
+                        <p th:if="${#fields.hasErrors('montantProj')}" th:errorclass="text-danger"
+                           th:errors="${projetDto.montantProj}"></p>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label">Description</label>
+                    <div class="col-sm-8">
+                        <textarea class="form-control" th:field="${projetDto.description}"></textarea>
+                        <p th:if="${#fields.hasErrors('description')}" th:errorclass="text-danger"
+                           th:errors="${projetDto.description}"></p>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label">Status</label>
+                    <div class="col-sm-8">
+                        <select class="form-select" th:field="${projetDto.Status}">
+                            <option value="En cours">En cours</option>
+                            <option value="Mis Attente">Mis Attente</option>
+                            <option value="Terminer">Terminer</option>
+                        </select>
+                        <p th:if="${#fields.hasErrors('Status')}" th:errorclass="text-danger"
+                           th:errors="${projetDto.Status}"></p>
+                    </div>
+                </div>
+
+
+                <div class="row mb-3">
+                    <div class="offset-sm-4 col-sm-8">
+                        <img th:src="@{'/images/' + ${projet.imageFileName}}"
+                        alt="..." width="150">
+                    </div>
+                </div>
+
+
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label">Image</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="file" th:field="${projetDto.imageFile}">
+                        <p th:if="${#fields.hasErrors('imageFile')}" th:errorclass="text-danger"
+                           th:errors="${projetDto.imageFile}"></p>
+                    </div>
+                </div>
+
+
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label">Created At</label>
+                    <div class="col-sm-8">
+                        <input readonly class="form-control-plaintext" th:value="${projet.dateProj}">
+
+                    </div>
+                </div>
+
+
+                <div class="row mb3">
+                    <div class="offset-sm-4 col-sm-4 d-grid">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                    <div class="col-sm-4 d-grid">
+                        <a class="btn btn-outline-primary" href="/projets/" role="button">Cancel</a>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
